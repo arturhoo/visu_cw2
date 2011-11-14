@@ -8,10 +8,9 @@ char * readLine(FILE * pFile) {
 
   fgetpos(pFile, &tempPosition);
   c = fgetc(pFile);
-  printf("%c", c);
   while(c != '\n') {
     numChar++;
-    fgetc(pFile);
+    c = fgetc(pFile);
   }
 
   char * line = malloc(numChar*sizeof(char));
@@ -29,11 +28,10 @@ char * readLine(FILE * pFile) {
 
 
 int main() {
-  printf("teste");
   FILE * pFile;
   pFile = fopen("example1.pgm", "r");
   char * line = readLine(pFile);
-  printf("%s", line);
+  printf("%s\n", line);
 
-  return 0;
+  return 1;
 }
