@@ -26,12 +26,28 @@ char * readLine(FILE * pFile) {
   return line;
 }
 
+int ** getMatrix(FILE * pFile){
+  int counter = 0;
+  char * line;
+  for(counter; counter<3; counter++) {
+    line = readLine(pFile);
+  }
+  int width, height;
+  sscanf(line, "%d %d", &width, &height);
+  printf("Width: %d, Height: %d\n", width, height);
+
+  int ** matrix = malloc(width*sizeof(int*));
+  for(counter = 0; counter<width; counter++) {
+    matrix[counter] = malloc(height*sizeof(int));
+  }
+
+  return matrix;
+}
+
 
 int main() {
   FILE * pFile;
   pFile = fopen("example1.pgm", "r");
-  char * line = readLine(pFile);
-  printf("%s\n", line);
-
+  int ** matrix = getMatrix(pFile);
   return 1;
 }
