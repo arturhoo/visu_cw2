@@ -1,3 +1,9 @@
+// 
+// io.cpp
+// handles input and output
+// Artur Rodrigues - 2011
+// 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,6 +14,7 @@ char * readLine(FILE * pFile) {
   fpos_t tempPosition;
   char c;
 
+  // Checks where line ends
   fgetpos(pFile, &tempPosition);
   c = fgetc(pFile);
   while(c != '\n') {
@@ -15,6 +22,7 @@ char * readLine(FILE * pFile) {
     c = fgetc(pFile);
   }
 
+  // Actually reads the line
   char * line = (char*) malloc(numChar*sizeof(char));
   int counter = 0;
   fsetpos(pFile, &tempPosition);
@@ -29,6 +37,7 @@ char * readLine(FILE * pFile) {
 }
 
 void skipLines(FILE * pFile) {
+  // Skip boiler plate PGM file content
   char * line = readLine(pFile);
   line = readLine(pFile);
   fpos_t position;
@@ -55,15 +64,18 @@ void getMatrix(int ** matrix, FILE * pFile, int ncolumns, int nrows) {
   int counter = 0;
   for(; counter<3; counter++) line = readLine(pFile);
 
+  // Iterates through the many values of the file
   int ccounter, rcounter, tcounter;
   char * token = strtok(line, " ");
   for(rcounter = 0; rcounter<nrows; rcounter++) {
     tcounter = 0;
     for(ccounter = 0; ccounter<ncolumns; ccounter++) {
+      // If reaches end of broken row
       if(token == NULL){
         line = readLine(pFile);
         token = strtok(line, " ");
       }
+      // If more than one row in the same line
       if(!(tcounter<ncolumns)) {
         break;
       }

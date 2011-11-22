@@ -1,3 +1,9 @@
+// 
+// terrain.cpp
+// main program
+// Artur Rodrigues - 2011
+// 
+
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -23,8 +29,8 @@ int main() {
 
 
   int i, j;
-  for(i=0; i<7; i++) {
-    for (j=0; j<24; j++) {
+  for(i=0; i<dimension[1]; i++) {
+    for (j=0; j<dimension[0]; j++) {
       printf("%d ",matrix[i][j]);
     }
     printf("\n");

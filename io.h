@@ -1,3 +1,9 @@
+// 
+// io.h
+// Header for io.cpp
+// Artur Rodrigues - 2011
+// 
+
 char * readLine(FILE * pFile);
 void skipLines(FILE * pFile);
 int ** allocateMatrix(int nrows, int ncolumns);
